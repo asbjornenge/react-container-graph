@@ -1,0 +1,38 @@
+{
+  "name": "react-container-graph",
+  "version": "1.0.0",
+  "description": "React component to display a container graph",
+  "main": "index.js",
+  "scripts": {
+    "start": "npm run copy & npm run copyGraphics & npm run watch & npm run stylus & npm run static & npm run livereload",
+    "test": "mocha -R nyan -w --check-leaks",
+    "watch": "watchify app/app.js -t 6to5ify -o build/app.js",
+    "livereload": "livereloadify build --glob '**/**'",
+    "stylus": "stylus -w app/styles/app.styl -o build",
+    "static": "static build",
+    "copy": "cp app/index.html build/index.html",
+    "copyGraphics": "cp -r app/graphics build/graphics"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/asbjornenge/react-container-graph.git"
+  },
+  "keywords": [
+    "react",
+    "react-component",
+    "docker",
+    "graph"
+  ],
+  "author": "Asbjorn Enge <asbjorn@hanafjedle.net>",
+  "license": "BSD",
+  "bugs": {
+    "url": "https://github.com/asbjornenge/react-container-graph/issues"
+  },
+  "homepage": "https://github.com/asbjornenge/react-container-graph",
+  "dependencies": {
+    "react": "^0.12.2"
+  },
+  "devDependencies": {
+    "6to5ify": "^3.1.2"
+  }
+}
