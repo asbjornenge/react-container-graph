@@ -6,6 +6,7 @@ export class ContainerGraph extends React.Component {
 
     constructor(props) {
         super(props)
+        this.prevNodes = []
     }
 
     render() {
@@ -14,7 +15,12 @@ export class ContainerGraph extends React.Component {
 
     _render() {
         this.network.setOptions({ groups : this.getGroups() })
-        this.nodes.update(this.getNodes())
+        var nodes = this.getNodes()
+        var kept  = this.nodes.update(nodes)
+        this.prevNodes.forEach(function(node) {
+            if (kept.indexOf(node.id) < 0) this.nodes.remove(node.id)
+        }.bind(this))
+        this.prevNodes = nodes
     }
 
     style() {
@@ -32,12 +38,13 @@ export class ContainerGraph extends React.Component {
     getGroups() {
         return this.props.containers.reduce(function(groups, container, index, containers) {
             if (!container.host) container.host = 'unknown' 
-            groups[container.host] = {
+            groups[container.host+container.image] = {
                 shape  : 'square',
                 color  : {
-                    border     : utils.stringToColor(container.image),
-                    background : utils.stringToColor(container.host)
-                }
+                    border     : utils.stringToColor(container.host),
+                    background : utils.stringToColor(container.image)
+                },
+                borderWidth : 2
             }
             return groups 
         }, {})
@@ -46,9 +53,9 @@ export class ContainerGraph extends React.Component {
     containerToNode(container, index) {
         if (!container.host) container.host = 'unknown' 
         return { 
-            id : index, 
-            label : container.id, 
-            group : container.host,
+            id     : container.id, 
+            label  : container.id, 
+            group  : container.host+container.image,
             radius : 15 
         }
     }
