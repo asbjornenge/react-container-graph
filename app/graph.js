@@ -25,9 +25,11 @@ export class ContainerGraph extends React.Component {
 
     style() {
         return {
-            width  : '500px',
-            height : '500px',
-            border : '1px solid #ccc'
+            position : 'fixed',
+            top      : '0',
+            bottom   : '0',
+            left     : '0',
+            right    : '0',
         }
     }
 
