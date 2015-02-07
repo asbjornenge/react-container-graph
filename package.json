@@ -4,9 +4,9 @@
   "description": "React component to display a container graph",
   "main": "index.js",
   "scripts": {
-    "start": "npm run copy & npm run copyGraphics & npm run watch & npm run stylus & npm run static & npm run livereload",
+    "start": "npm run copy & npm run watch & npm run static & npm run livereload",
     "test": "mocha -R nyan -w --check-leaks",
-    "watch": "watchify app/app.js -t 6to5ify -o build/app.js",
+    "watch": "watchify app/entry.js -t 6to5ify -o build/app.js",
     "livereload": "livereloadify build --glob '**/**'",
     "stylus": "stylus -w app/styles/app.styl -o build",
     "static": "static build",
@@ -30,7 +30,8 @@
   },
   "homepage": "https://github.com/asbjornenge/react-container-graph",
   "dependencies": {
-    "react": "^0.12.2"
+    "react": "^0.12.2",
+    "vis": "^3.9.1"
   },
   "devDependencies": {
     "6to5ify": "^3.1.2"
