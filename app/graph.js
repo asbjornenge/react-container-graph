@@ -31,6 +31,7 @@ export class ContainerGraph extends React.Component {
 
     getGroups() {
         return this.props.containers.reduce(function(groups, container, index, containers) {
+            if (!container.host) container.host = 'unknown' 
             groups[container.host] = {
                 shape  : 'square',
                 color  : {
@@ -43,6 +44,7 @@ export class ContainerGraph extends React.Component {
     }
 
     containerToNode(container, index) {
+        if (!container.host) container.host = 'unknown' 
         return { 
             id : index, 
             label : container.id, 
